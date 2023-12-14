@@ -3,6 +3,7 @@ import { MoviesService } from '../movies.service';
 import { CreateMovieRequestSchema } from './create-movie.request';
 import { FindMovieRequestSchema } from './find-movie.request';
 import { Service } from 'typedi';
+import { HTTP_CREATED } from '../../common/http';
 
 @Service()
 export class MoviesController {
@@ -35,6 +36,6 @@ export class MoviesController {
       posterUrl: createMovieRequest.posterUrl,
     });
 
-    return res.status(201).json(movie);
+    return res.status(HTTP_CREATED).json(movie);
   }
 }

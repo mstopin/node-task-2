@@ -16,24 +16,25 @@ import { GENRES_REPOSITORY } from './genres/genres.repository';
 import { FileDatabaseGenresRepository } from './genres/impl/file-database.genres.repository';
 import { MOVIES_REPOSITORY } from './movies/movies.repository';
 import { FileDatabaseMoviesRepository } from './movies/impl/file-database.movies.repository';
+import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR } from './common/http';
 
 function createErrorHandler() {
   return function (err: Error, _: Request, res: Response, __: NextFunction) {
     if (err instanceof ZodError) {
-      return res.status(400).json({
+      return res.status(HTTP_BAD_REQUEST).json({
         errors: err.issues.map((i) => i.message),
       });
     }
 
     if (err instanceof DomainRuleBrokenError) {
-      return res.status(400).json({
+      return res.status(HTTP_BAD_REQUEST).json({
         error: err.message,
       });
     }
 
     console.error(err);
 
-    return res.status(500).json({
+    return res.status(HTTP_INTERNAL_SERVER_ERROR).json({
       error: 'Internal server error',
     });
   };
