@@ -1,3 +1,5 @@
-export interface FileGenre {
-  genres: string[];
+export interface FileDatabaseGenreData {
+  genres: FileDatabaseGenre[];
 }
+
+export type FileDatabaseGenre = string;

@@ -1,19 +1,19 @@
 import { Genre } from 'genres/genre';
 import { GenreRepository } from 'genres/genre.repository';
-import { FileGenre } from './file-database.genre';
+import { FileDatabaseGenreData } from './file-database.genre';
 import { FileDatabaseRepository } from '../../common/file-database.repository';
 
 export class FileDatabaseGenreRepository
-  extends FileDatabaseRepository<FileGenre>
+  extends FileDatabaseRepository<FileDatabaseGenreData>
   implements GenreRepository
 {
   constructor() {
     super();
   }
 
-  private mapPersistenceToDomain(fileGenre: FileGenre): Genre[] {
-    return fileGenre.genres.map((g) => ({
-      name: g,
+  private mapPersistenceToDomain(data: FileDatabaseGenreData): Genre[] {
+    return data.genres.map((genre) => ({
+      name: genre,
     }));
   }
 
