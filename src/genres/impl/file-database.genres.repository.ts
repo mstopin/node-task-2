@@ -2,7 +2,9 @@ import { Genre } from 'genres/genre';
 import { GenresRepository } from '../genres.repository';
 import { FileDatabaseGenresData } from './file-database.genre';
 import { FileDatabaseRepository } from '../../common/file-database.repository';
+import { Service } from 'typedi';
 
+@Service()
 export class FileDatabaseGenresRepository
   extends FileDatabaseRepository<FileDatabaseGenresData>
   implements GenresRepository

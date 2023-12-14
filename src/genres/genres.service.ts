@@ -1,8 +1,13 @@
+import { Inject, Service } from 'typedi';
 import { Genre } from './genre';
-import { GenresRepository } from './genres.repository';
+import { GENRES_REPOSITORY, GenresRepository } from './genres.repository';
 
+@Service()
 export class GenresService {
-  constructor(private readonly genresRepository: GenresRepository) {}
+  constructor(
+    @Inject(GENRES_REPOSITORY)
+    private readonly genresRepository: GenresRepository,
+  ) {}
 
   async findAll(): Promise<Genre[]> {
     return await this.genresRepository.findAll();

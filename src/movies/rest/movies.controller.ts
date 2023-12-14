@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
-import { MoviesService } from 'movies/movies.service';
+import { MoviesService } from '../movies.service';
 import { CreateMovieRequestSchema } from './create-movie.request';
 import { FindMovieRequestSchema } from './find-movie.request';
+import { Service } from 'typedi';
 
+@Service()
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 

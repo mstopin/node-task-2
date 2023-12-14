@@ -2,17 +2,20 @@ import { Genre } from '../genres/genre';
 import { GenresService } from '../genres/genres.service';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { Movie } from './movie';
-import { MoviesRepository } from './movies.repository';
+import { MOVIES_REPOSITORY, MoviesRepository } from './movies.repository';
 import { DomainRuleBrokenError } from '../common/domain-rule-broken.error';
 import { MoviesSearchParams } from './movies.search-params';
+import { Inject, Service } from 'typedi';
 
 interface MovieGenreMatch {
   movie: Movie;
   genresMatched: number;
 }
 
+@Service()
 export class MoviesService {
   constructor(
+    @Inject(MOVIES_REPOSITORY)
     private readonly moviesRepository: MoviesRepository,
     private readonly genresService: GenresService,
   ) {}

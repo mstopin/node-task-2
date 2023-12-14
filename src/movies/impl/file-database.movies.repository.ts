@@ -3,7 +3,9 @@ import { FileDatabaseRepository } from '../../common/file-database.repository';
 import { Movie } from '../movie';
 import { MoviesRepository } from '../movies.repository';
 import { FileDatabaseMovieData } from './file-database.movie';
+import { Service } from 'typedi';
 
+@Service()
 export class FileDatabaseMoviesRepository
   extends FileDatabaseRepository<FileDatabaseMovieData>
   implements MoviesRepository
