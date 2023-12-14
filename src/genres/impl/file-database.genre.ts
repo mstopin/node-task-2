@@ -1,4 +1,4 @@
-export interface FileDatabaseGenreData {
+export interface FileDatabaseGenresData {
   genres: FileDatabaseGenre[];
 }
 

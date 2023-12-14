@@ -1,5 +1,5 @@
 import { Genre } from './genre';
 
-export interface GenreRepository {
+export interface GenresRepository {
   findAll(): Promise<Genre[]>;
 }
