@@ -12,8 +12,20 @@ export class FileDatabaseMoviesRepository
     super();
   }
 
+  async findAll(): Promise<Movie[]> {
+    return this.persistenceToDomain(await this.readData());
+  }
+
+  async findOneByRandomId(): Promise<Movie> {
+    const movies = await this.findAll();
+    const id = Math.floor(Math.random() * movies.length);
+
+    return movies[id]!;
+  }
+
   async create(newMovie: Omit<Movie, 'id'>): Promise<Movie> {
-    const movies = this.persistenceToDomain(await this.readData());
+    const data = await this.readData();
+    const movies = this.persistenceToDomain(data);
 
     const movie: Movie = {
       ...newMovie,
@@ -21,7 +33,10 @@ export class FileDatabaseMoviesRepository
     };
 
     movies.push(movie);
-    await this.saveData(this.domainToPersistence(movies));
+    await this.saveData({
+      ...data,
+      ...this.domainToPersistence(movies),
+    });
 
     return movie;
   }
